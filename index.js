@@ -1,7 +1,7 @@
 
 
 
-// Dom manipulation 2
+// Dom manipulation 2 
 const myForm = document.querySelector('#my-form');
 const nameInput = document.querySelector('#name');
 const emailInput = document.querySelector('#email');
