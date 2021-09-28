@@ -45,6 +45,8 @@ function onSubmit(e) {
 // console.log(document.links);
 // console.log(document.images);
 
+
+// Lesson : getElementbyId
 var headerTitle = document.getElementById('header-title');
 // console.log(headerTitle.innerText);
 console.log(headerTitle.textContent);
@@ -53,3 +55,13 @@ console.log(headerTitle.textContent);
 headerTitle.style.backgroundColor = 'grey';
 headerTitle.style.color = 'green';
 headerTitle.style.borderBottom = '3px solid #000';
+
+
+// Lesson : getElementbyclassName
+var item = document.getElementsByClassName('item');
+console.log(item);
+item[2].textContent = 'Hello 2';
+item[1].style.backgroundColor = 'green';
+for (var i = 0; i<item.length; i++){
+    item[i].style.fontWeight = 'bold';
+}
