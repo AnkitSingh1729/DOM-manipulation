@@ -65,3 +65,13 @@ item[1].style.backgroundColor = 'green';
 for (var i = 0; i<item.length; i++){
     item[i].style.fontWeight = 'bold';
 }
+
+
+// Lesson : getElementbyTagName
+var itemli = document.getElementsByTagName('li');
+console.log(itemli);
+itemli[2].textContent = 'Item 2';
+itemli[1].style.backgroundColor = 'green';
+for (var i = 0; i<itemli.length; i++){
+    itemli[i].style.fontWeight = 'bold';
+}
