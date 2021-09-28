@@ -75,3 +75,38 @@ itemli[1].style.backgroundColor = 'green';
 for (var i = 0; i<itemli.length; i++){
     itemli[i].style.fontWeight = 'bold';
 }
+
+
+// Lesson : query Selector
+var header = document.querySelector('#header-title');
+header.style.borderBottom = '4px solid #ccc';
+// itemq[1].style.backgroundColor = 'green';
+
+var input = document.querySelector('input');
+input.value = 'Hello World';
+
+var submit = document.querySelector('input[type="submit"]');
+submit.value = "SEND";
+
+var item = document.querySelector('.item');
+item.style.color = 'red';
+
+var lastitem = document.querySelector('.item:nth-child(2)');
+lastitem.style.backgroundColor = 'green';
+var invisibleitem = document.getElementsByClassName('item');
+invisibleitem[2].style.visibility = 'hidden';
+
+
+
+
+// query selector all
+var item = document.querySelectorAll('.item');
+console.log(item);
+item[0].textContent = "Hello";
+
+var odd = document.querySelectorAll('li:nth-child(odd');
+var even = document.querySelectorAll('li:nth-child(even');
+for(var i=0; i<odd.length; i++){
+    odd[i].style.backgroundColor = "#f4f4f4";
+    even[i].style.backgroundColor = "#ccc";
+}
