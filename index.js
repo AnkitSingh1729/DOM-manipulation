@@ -188,10 +188,13 @@ itemList.addEventListener('click', removeItem);
 // Filter event
 filter.addEventListener('keyup', filterItems);
 
+// Count number of items in list
+var count = 0;
+
 // Add item
 function addItem(e){
     e.preventDefault();
-
+    count++;
     // Get input value
     var nextItem = document.getElementById('item').value;
     console.log(nextItem);
@@ -217,12 +220,16 @@ function addItem(e){
     // Append li to item-list
     itemList.appendChild(li);
 
+    // Add nextItem to local storage
+    localStorage.setItem(count, nextItem);
+
 }
 
 // Remove item
 function removeItem(e){
     if (e.target.classList.contains('delete')){
         if (confirm('Are you sure?')){
+            count--;
             var li = e.target.parentElement;
             itemList.removeChild(li);
         }
