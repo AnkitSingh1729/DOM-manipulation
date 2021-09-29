@@ -1,34 +1,34 @@
 
 
 
-// Dom manipulation 2 
-const myForm = document.querySelector('#my-form');
-const nameInput = document.querySelector('#name');
-const emailInput = document.querySelector('#email');
-const msg = document.querySelector('.msg');
-const userList = document.querySelector('#users');
+// // Dom manipulation 2 
+// const myForm = document.querySelector('#my-form');
+// const nameInput = document.querySelector('#name');
+// const emailInput = document.querySelector('#email');
+// const msg = document.querySelector('.msg');
+// const userList = document.querySelector('#users');
 
-myForm.addEventListener('submit', onSubmit);
+// myForm.addEventListener('submit', onSubmit);
 
-function onSubmit(e) {
-    e.preventDefault();
+// function onSubmit(e) {
+//     e.preventDefault();
 
-    if (nameInput.value === '' || emailInput.value === ''){
-        msg.classList.add('error');
-        msg.innerHTML = 'Please enter all fields';
+//     if (nameInput.value === '' || emailInput.value === ''){
+//         msg.classList.add('error');
+//         msg.innerHTML = 'Please enter all fields';
 
-        setTimeout(() => msg.remove(), 3000);
-    }else {
-        const li = document.createElement('li'); // Create a new element out of nowhere
-        li.appendChild(document.createTextNode(`${nameInput.value} : ${emailInput.value}`));  // "createTextNode", then append it to created child
+//         setTimeout(() => msg.remove(), 3000);
+//     }else {
+//         const li = document.createElement('li'); // Create a new element out of nowhere
+//         li.appendChild(document.createTextNode(`${nameInput.value} : ${emailInput.value}`));  // "createTextNode", then append it to created child
 
-        userList.appendChild(li);     // Finally append the element to main list. userList refers to element with id = "user"
+//         userList.appendChild(li);     // Finally append the element to main list. userList refers to element with id = "user"
 
-        nameInput.value = '';
-        emailInput.value = '';
-    }
+//         nameInput.value = '';
+//         emailInput.value = '';
+//     }
  
-}
+// }
 
 // console.dir(document);
 // console.log(document.domain);
@@ -78,8 +78,8 @@ function onSubmit(e) {
 
 
 // Lesson : query Selector
-var header = document.querySelector('#header-title');
-header.style.borderBottom = '4px solid #ccc';
+// var header = document.querySelector('#header-title');
+// header.style.borderBottom = '4px solid #ccc';
 // itemq[1].style.backgroundColor = 'green';
 
 // var input = document.querySelector('input');
@@ -99,78 +99,151 @@ header.style.borderBottom = '4px solid #ccc';
 
 
 
-// query selector all
-var item = document.querySelectorAll('.item');
-console.log(item);
-item[0].textContent = "Hello";
+// // query selector all
+// var item = document.querySelectorAll('.item');
+// console.log(item);
+// item[0].textContent = "Hello";
 
-var odd = document.querySelectorAll('li:nth-child(odd');
-var even = document.querySelectorAll('li:nth-child(even');
-for(var i=0; i<odd.length; i++){
-    odd[i].style.backgroundColor = "#f4f4f4";
-    even[i].style.backgroundColor = "#ccc";
+// var odd = document.querySelectorAll('li:nth-child(odd');
+// var even = document.querySelectorAll('li:nth-child(even');
+// for(var i=0; i<odd.length; i++){
+//     odd[i].style.backgroundColor = "#f4f4f4";
+//     even[i].style.backgroundColor = "#ccc";
+// }
+
+
+
+// // Traversing the dom
+// var itemlist = document.querySelector('.items');
+// // console.log(itemlist);
+// // console.log(itemlist.parentNode);
+// // itemlist.parentNode.style.color = "#f3f3f3"
+
+
+// // childNodes
+// // console.log(itemlist.childNodes);   // it includes line break
+// // console.log(itemlist.children);       // ignores line break and just give actual children
+// // itemlist.children[1].style.backgroundColor = 'green';
+// // console.log(itemlist.children[1]);
+
+
+// // // First child
+// // console.log(itemlist.firstChild);
+// // // First element child
+// // console.log(itemlist.firstElementChild);
+// // itemlist.firstElementChild.textContent = 'Hello 1';
+
+// // // last element child
+// // console.log(itemlist.lastChild);
+// // console.log(itemlist.lastElementChild);
+
+// // // next sibling
+// // console.log(itemlist.nextSibling);
+// // console.log(itemlist.nextElementSibling);
+
+
+// // // previous sibling
+// // console.log(itemlist.previousSibling);
+// // console.log(itemlist.previousElementSibling);
+
+
+// // create Element
+// // create a div
+// var newDiv = document.createElement('div');
+
+// // Add class
+// newDiv.className = 'hello';
+
+// // Add id
+// newDiv.id = 'hello1';
+
+// // Add attr
+// newDiv.setAttribute('tittle', 'Hello Div');
+
+// // Create text node
+// var newDivText = document.createTextNode('Hello World');
+
+// // Add text to div
+// newDiv.appendChild(newDivText);
+
+// var container = document.querySelector('header .container');
+// var h1 = document.querySelector('header h1');
+
+// container.insertBefore(newDiv, h1);
+
+// console.log(h1);
+// console.log(container);
+// console.log(newDiv);
+
+var form = document.getElementById('addForm');
+var itemList = document.getElementById('items');
+var filter = document.getElementById('filter');
+
+// form submit event
+form.addEventListener('submit', addItem);
+
+// Delete event
+itemList.addEventListener('click', removeItem);
+
+// Filter event
+filter.addEventListener('keyup', filterItems);
+
+// Add item
+function addItem(e){
+    e.preventDefault();
+
+    // Get input value
+    var nextItem = document.getElementById('item').value;
+    console.log(nextItem);
+    // Create new li element
+    var li = document.createElement('li');
+    // Add class to li
+    li.className = 'list-group-item';
+    // Add texdt node with input value
+    li.appendChild(document.createTextNode(nextItem));
+
+    // Create del button element
+    var deleteBtn = document.createElement('button');
+
+    // Add classes to del button
+    deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
+
+    // Append text node
+    deleteBtn.appendChild(document.createTextNode('X'));
+
+    // Append buttone to li
+    li.appendChild(deleteBtn);
+
+    // Append li to item-list
+    itemList.appendChild(li);
+
 }
 
+// Remove item
+function removeItem(e){
+    if (e.target.classList.contains('delete')){
+        if (confirm('Are you sure?')){
+            var li = e.target.parentElement;
+            itemList.removeChild(li);
+        }
+    }
+}
 
+// filter item
+function filterItems(e){
+    // convert text to lowercase
+    var text = e.target.value.toLowerCase();
+    // get li's
+    var items = itemList.getElementsByTagName('li');
+    console.log(items);
+    // convert to an array
+    Array.from(items).forEach(function(item){
+        var itemName = item.firstChild.textContent;
+        if (itemName.toLowerCase().indexOf(text) != -1){
+            item.style.display = 'block';
+        }else {
+            item.style.display = 'none';
+        }
+    })
 
-// Traversing the dom
-var itemlist = document.querySelector('.items');
-// console.log(itemlist);
-// console.log(itemlist.parentNode);
-// itemlist.parentNode.style.color = "#f3f3f3"
-
-
-// childNodes
-// console.log(itemlist.childNodes);   // it includes line break
-// console.log(itemlist.children);       // ignores line break and just give actual children
-// itemlist.children[1].style.backgroundColor = 'green';
-// console.log(itemlist.children[1]);
-
-
-// // First child
-// console.log(itemlist.firstChild);
-// // First element child
-// console.log(itemlist.firstElementChild);
-// itemlist.firstElementChild.textContent = 'Hello 1';
-
-// // last element child
-// console.log(itemlist.lastChild);
-// console.log(itemlist.lastElementChild);
-
-// // next sibling
-// console.log(itemlist.nextSibling);
-// console.log(itemlist.nextElementSibling);
-
-
-// // previous sibling
-// console.log(itemlist.previousSibling);
-// console.log(itemlist.previousElementSibling);
-
-
-// create Element
-// create a div
-var newDiv = document.createElement('div');
-
-// Add class
-newDiv.className = 'hello';
-
-// Add id
-newDiv.id = 'hello1';
-
-// Add attr
-newDiv.setAttribute('tittle', 'Hello Div');
-
-// Create text node
-var newDivText = document.createTextNode('Hello World');
-
-// Add text to div
-newDiv.appendChild(newDivText);
-
-var container = document.querySelector('header .container');
-var h1 = document.querySelector('header h1');
-
-container.insertBefore(newDiv, h1);
-
-console.log(h1);
-console.log(container);
-console.log(newDiv);
+}

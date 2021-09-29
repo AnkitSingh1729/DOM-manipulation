@@ -75,3 +75,8 @@
     padding: 5px;
     margin: 5px;
   }
+
+  .editbtn {
+    display: block;
+    background-color: #333;
+  }
